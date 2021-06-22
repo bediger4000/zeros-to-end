@@ -36,7 +36,7 @@ func zerostoend(array []int) {
 		}
 		// zeroIdx is the index of a zero-array-value
 		// find non-zero value further along in the array
-		for nonZeroIdx := zeroIdx; nonZeroIdx < length; nonZeroIdx++ {
+		for nonZeroIdx := zeroIdx + 1; nonZeroIdx < length; nonZeroIdx++ {
 			if array[nonZeroIdx] == 0 {
 				continue
 			}
