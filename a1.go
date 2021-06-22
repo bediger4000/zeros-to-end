@@ -8,8 +8,9 @@ import (
 
 func main() {
 	array := prepareCmdLine(os.Args[1:])
-	fiddleArray(array)
-	fmt.Printf("%v\n", array)
+	fmt.Printf("Before: %v\n", array)
+	zerostoend(array)
+	fmt.Printf("After:  %v\n", array)
 }
 
 func prepareCmdLine(repr []string) []int {
@@ -23,5 +24,25 @@ func prepareCmdLine(repr []string) []int {
 	return ary
 }
 
-func fiddleArray(array []int) {
+func zerostoend(array []int) {
+
+	var zeroIdx int
+
+	length := len(array)
+
+	for ; zeroIdx < length; zeroIdx++ {
+		if array[zeroIdx] != 0 {
+			continue
+		}
+		// zeroIdx is the index of a zero-array-value
+		// find non-zero value further along in the array
+		for nonZeroIdx := zeroIdx; nonZeroIdx < length; nonZeroIdx++ {
+			if array[nonZeroIdx] == 0 {
+				continue
+			}
+			array[zeroIdx] = array[nonZeroIdx]
+			array[nonZeroIdx] = 0
+			break
+		}
+	}
 }
